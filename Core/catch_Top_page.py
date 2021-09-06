@@ -1,7 +1,6 @@
 from Core.catch_Response import Catch_Page
 from pyquery import PyQuery as pq
-import Config.Config
-
+import Config.Config as Config
 
 class process_Html:
 	def __init__(self,base_Url):
@@ -17,11 +16,16 @@ class process_Html:
 	def joint_All_page(self):
 		__total_page = int(self.total_page)
 		for i in range(1,__total_page+1):
-			print(i)
+			pass
+
+
+
 
 	def test_fun(self):
-		aaa = static.
+		aaa = Config.ORIGIN_URL.format("1")
+		print(aaa)
 if __name__ == '__main__':
-	fun = process_Html(static.BASE_URL)
+	fun = process_Html(Config.BASE_URL)
 	# fun.catch_Total_page()
-	fun.joint_All_page()
+	# fun.joint_All_page()
+	fun.test_fun()#
