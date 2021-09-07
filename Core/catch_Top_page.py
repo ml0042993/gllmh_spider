@@ -15,10 +15,10 @@ class process_Html:
 
 	def joint_All_page(self):
 		__total_page = int(self.total_page)
-		for i in range(1,__total_page+1):
-			pass
-
-
+		with open("../TEMP/All_Url","w+",encoding="utf-8") as f:
+			for i in range(__total_page,0,-1):
+				result = Config.ORIGIN_URL.format(i)
+				f.write(result + "\n")
 
 
 	def test_fun(self):
@@ -27,5 +27,6 @@ class process_Html:
 if __name__ == '__main__':
 	fun = process_Html(Config.BASE_URL)
 	# fun.catch_Total_page()
-	# fun.joint_All_page()
-	fun.test_fun()#
+	Url_list= fun.joint_All_page()
+	print(Url_list)
+	# fun.test_fun()#
