@@ -1,5 +1,5 @@
 import os
-import Config
+from Config.Config import Site
 class initialize_Folders:
 	def __init__(self):
 		self.path = self.detection_Folder()
@@ -11,8 +11,8 @@ class initialize_Folders:
 
 	def creat_Folder(self,path):
 		try:
-			TEMP_path = path + Config.TEMP_PATH
-			DownLoad_Path = path + Config.DownLoad_Path
+			TEMP_path = path + Site.TEMP_PATH.value
+			DownLoad_Path = path + Site.DownLoad_Path.value
 			if not os.path.exists(TEMP_path):
 				os.mkdir(TEMP_path)
 				# os.mknod(TEMP_path + "/All_url.txt")
