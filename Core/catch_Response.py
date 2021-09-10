@@ -1,6 +1,6 @@
 import requests
 from pyquery import PyQuery as pq
-from Config.Config import Site
+from Config.Configuration import Site
 # 得到输入网页的源代码
 class Catch_Page:
 	def __init__(self,base_url):

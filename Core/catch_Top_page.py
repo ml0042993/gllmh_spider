@@ -1,6 +1,6 @@
 from Core.catch_Response import Catch_Page
 from pyquery import PyQuery as pq
-from Config.Config import Site
+from Config.Configuration import Site
 
 class process_Html:
 	def __init__(self,base_Url):

@@ -1,5 +1,5 @@
 import os
-from Config.Config import Site
+from Config.Configuration import Site
 class initialize_Folders:
 	def __init__(self):
 		self.path = self.detection_Folder()
