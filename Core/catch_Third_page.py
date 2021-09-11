@@ -1,9 +1,9 @@
 from Core.catch_Response import Catch_Page
 from Config.Configuration import Site
 import os
-class catch_Second_page(Catch_Page):
+class catch_Third_page(Catch_Page):
 	def __init__(self):
-		self.read_All_url()
+		pass
 		# super().__init__(base_url=self.itmes_info)
 		# self.base_Catch()
 		# self.change_PyQuery()
@@ -42,19 +42,37 @@ class catch_Second_page(Catch_Page):
 		if not os.path.exists(path_name):
 			os.mkdir(path_name)
 		# print(path_name)
-		img_DL=self.__total_page('section p img').items()
-		with open(path_name+'/{}'.format(file_name),'w',encoding="utf-8") as f:
-			tap = 1
-			for item in img_DL:
+		rules_spider = ['section p img',".inner p img",".inner img"]
+		circulation_tap = 1
+		for rule_spider in rules_spider:
 
-				item = item.attr("src")
-				f.write(item + "\n")
-				super().__init__(item)
-				result = self.base_Catch()
-				print(result)
-				with open(path_name+'/{}'.format(str(tap)+'.jpg'),'wb') as ff:
-					ff.write(result.content)
-				tap+=1
+			imgs_DL=self.__total_page(rule_spider)
+			print(bool(imgs_DL))
+			if bool(imgs_DL):
+				imgs_DL = self.__total_page(rule_spider).items()
+				print("找到匹配")
+				with open(path_name+'/{}'.format(file_name),'w',encoding="utf-8") as f:
+					tap = 1
+					for item in imgs_DL:
+
+						item = item.attr("src")
+						f.write(item + "\n")
+						super().__init__(item)
+						result = self.base_Catch()
+						# print(result)
+						try:
+							with open(path_name+'/{}'.format(str(tap)+'.jpg'),'wb') as ff:
+								ff.write(result.content)
+						except (AttributeError):
+							print("图片格式不匹配")
+							continue
+						tap += 1
+				print("完成拉取")
+				break
+			else:
+				print("第{}次匹配，未找到爬虫规则".format(circulation_tap))
+				circulation_tap += 1
+				print("第{}次匹配".format(circulation_tap))
 				# print(item)
 		# with open("../TEMP/second_Url", "a", encoding="utf-8") as f:
 		# 	for item in items:
@@ -64,5 +82,5 @@ class catch_Second_page(Catch_Page):
 		#
 		# 		f.write(item + '\n')
 if __name__ == '__main__':
-	fun = catch_Second_page()
-	fun.joint_All_page()
+	fun = catch_Third_page()
+	fun.read_All_url()
